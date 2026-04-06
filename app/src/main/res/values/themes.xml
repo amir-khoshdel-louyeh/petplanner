@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.PetPlanner" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:colorBackground">@color/background</item>
+        <item name="android:textColorPrimary">@color/onBackground</item>
+        <item name="android:textColorSecondary">@color/onBackgroundSecondary</item>
+    </style>
+</resources>
