@@ -14,16 +14,12 @@
             android:id="@+id/titleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="PetPlanner"
-            android:textColor="@color/onBackground"
-            android:textSize="28sp"
-            android:textStyle="bold" />
-
+                android:text="@string/home_title"
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="Daily care, reminders, and pet profiles in one place"
+            android:text="@string/home_subtitle"
             android:textColor="@color/onBackgroundSecondary"
             android:textSize="14sp" />
 
@@ -40,7 +36,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Buddy"
+                android:text="@string/pet_name"
                 android:textColor="@color/onBackground"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -49,7 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="Golden Retriever · 3 yrs · Dog"
+                android:text="@string/pet_summary"
                 android:textColor="@color/onBackgroundSecondary"
                 android:textSize="14sp" />
 
@@ -57,7 +53,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:text="Personality: playful, friendly, loves morning walks"
+                android:text="@string/pet_personality"
                 android:textColor="@color/onBackgroundSecondary"
                 android:textSize="14sp" />
         </LinearLayout>
@@ -66,7 +62,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_large"
-            android:text="Today's Tasks"
+            android:text="@string/today_tasks_title"
             android:textColor="@color/onBackground"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -94,7 +90,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
-                    android:text="Feed Buddy breakfast"
+                    android:text="@string/task_feed"
                     android:textColor="@color/onBackground"
                     android:textSize="16sp" />
             </LinearLayout>
@@ -118,7 +114,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
-                    android:text="Morning walk and training"
+                    android:text="@string/task_walk"
                     android:textColor="@color/onBackground"
                     android:textSize="16sp" />
             </LinearLayout>
@@ -142,7 +138,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
-                    android:text="Medication reminder: joint care"
+                    android:text="@string/task_medication"
                     android:textColor="@color/onBackground"
                     android:textSize="16sp" />
             </LinearLayout>
@@ -166,14 +162,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Mood"
+                    android:text="@string/mood_label"
                     android:textColor="@color/onBackgroundSecondary"
                     android:textSize="14sp" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Happy"
+                    android:text="@string/mood_value"
                     android:textColor="@color/primary"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -194,14 +190,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Weight"
+                    android:text="@string/weight_label"
                     android:textColor="@color/onBackgroundSecondary"
                     android:textSize="14sp" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="72 lbs"
+                    android:text="@string/weight_value"
                     android:textColor="@color/primary"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -214,10 +210,4 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_large"
             android:backgroundTint="@color/primary"
-            android:text="Add new task"
-            android:textAllCaps="false"
-            android:textColor="@android:color/white"
-            android:padding="@dimen/padding_small" />
-
-    </LinearLayout>
-</ScrollView>
+                android:text="@string/add_task_button"
