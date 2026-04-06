@@ -1,4 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">PetPlanner</string>
+    <string name="home_title">PetPlanner</string>
+    <string name="home_subtitle">Daily care, reminders, and pet profiles in one place</string>
+    <string name="pet_name">Buddy</string>
+    <string name="pet_summary">Golden Retriever · 3 yrs · Dog</string>
+    <string name="pet_personality">Personality: playful, friendly, loves morning walks</string>
+    <string name="today_tasks_title">Today's Tasks</string>
+    <string name="task_feed">Feed Buddy breakfast</string>
+    <string name="task_walk">Morning walk and training</string>
+    <string name="task_medication">Medication reminder: joint care</string>
+    <string name="mood_label">Mood</string>
+    <string name="mood_value">Happy</string>
+    <string name="weight_label">Weight</string>
+    <string name="weight_value">72 lbs</string>
+    <string name="add_task_button">Add new task</string>
 </resources>
