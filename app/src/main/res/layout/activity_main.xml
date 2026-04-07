@@ -84,41 +84,11 @@
             android:elevation="@dimen/card_elevation"
             android:clipToPadding="false">
 
-            <CheckBox
-                android:id="@+id/taskFeedCheck"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/tasksRecycler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/task_feed"
-                android:textColor="@color/onBackground"
-                android:textSize="16sp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginVertical="@dimen/spacing_medium"
-                android:background="@color/divider" />
-
-            <CheckBox
-                android:id="@+id/taskWalkCheck"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/task_walk"
-                android:textColor="@color/onBackground"
-                android:textSize="16sp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginVertical="@dimen/spacing_medium"
-                android:background="@color/divider" />
-
-            <CheckBox
-                android:id="@+id/taskHealthCheck"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/task_medication"
-                android:textColor="@color/onBackground"
-                android:textSize="16sp" />
+                android:nestedScrollingEnabled="false" />
         </LinearLayout>
 
         <LinearLayout
