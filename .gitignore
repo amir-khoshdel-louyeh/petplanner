@@ -40,6 +40,7 @@ env/
 dist/
 build/
 .gradle/
+local.properties
 
 # Local project files
 petplanner.docx

@@ -14,7 +14,11 @@
             android:id="@+id/titleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-                android:text="@string/home_title"
+            android:text="@string/home_title"
+            android:textColor="@color/onBackground"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -210,4 +214,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_large"
             android:backgroundTint="@color/primary"
-                android:text="@string/add_task_button"
+            android:text="@string/add_task_button"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:padding="@dimen/padding_small" />
+
+    </LinearLayout>
+</ScrollView>

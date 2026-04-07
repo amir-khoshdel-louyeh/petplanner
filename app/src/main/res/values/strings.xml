@@ -6,7 +6,7 @@
     <string name="pet_name">Buddy</string>
     <string name="pet_summary">Golden Retriever · 3 yrs · Dog</string>
     <string name="pet_personality">Personality: playful, friendly, loves morning walks</string>
-    <string name="today_tasks_title">Today's Tasks</string>
+    <string name="today_tasks_title">Today\'s Tasks</string>
     <string name="task_feed">Feed Buddy breakfast</string>
     <string name="task_walk">Morning walk and training</string>
     <string name="task_medication">Medication reminder: joint care</string>
