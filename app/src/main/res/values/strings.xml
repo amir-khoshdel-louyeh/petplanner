@@ -15,4 +15,9 @@
     <string name="weight_label">Weight</string>
     <string name="weight_value">72 lbs</string>
     <string name="add_task_button">Add new task</string>
+    <string name="dashboard_label">Dashboard</string>
+    <string name="pet_profile_label">Pet profile</string>
+    <string name="health_label">Health logs</string>
+    <string name="calendar_label">Calendar</string>
+    <string name="settings_label">Settings</string>
 </resources>
