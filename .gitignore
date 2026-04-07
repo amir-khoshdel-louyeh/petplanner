@@ -39,6 +39,7 @@ env/
 # Build output
 dist/
 build/
+.gradle/
 
 # Local project files
 petplanner.docx
