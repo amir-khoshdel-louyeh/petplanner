@@ -1,15 +1,12 @@
 package com.petplanner
 
 import android.os.Bundle
-import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -78,32 +75,11 @@ class DashboardFragment : Fragment() {
         }
 
         ItemTouchHelper(swipeHandler).attachToRecyclerView(tasksRecycler)
-        addTaskButton.setOnClickListener { showAddTaskDialog() }
-    }
-
-    private fun showAddTaskDialog() {
-        val taskNameInput = EditText(requireContext()).apply {
-            inputType = InputType.TYPE_CLASS_TEXT
-            hint = "New task title"
+        addTaskButton.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.navHostFragment, TaskEditorFragment())
+                .addToBackStack(null)
+                .commit()
         }
-
-        AlertDialog.Builder(requireContext())
-            .setTitle("Add task")
-            .setView(taskNameInput)
-            .setPositiveButton("Add") { _, _ ->
-                val taskTitle = taskNameInput.text.toString().trim()
-                if (taskTitle.isEmpty()) {
-                    Toast.makeText(requireContext(), "Please enter a task title.", Toast.LENGTH_SHORT).show()
-                    return@setPositiveButton
-                }
-                val task = Task(
-                    id = "task-${System.currentTimeMillis()}",
-                    title = taskTitle,
-                    completed = false
-                )
-                taskAdapter.addTask(task)
-            }
-            .setNegativeButton("Cancel", null)
-            .show()
     }
 }
