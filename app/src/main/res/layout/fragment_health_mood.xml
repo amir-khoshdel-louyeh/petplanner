@@ -14,7 +14,7 @@
             android:id="@+id/healthTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Health & mood"
+            android:text="Health &amp; mood"
             android:textColor="@color/onBackground"
             android:textSize="28sp"
             android:textStyle="bold" />
