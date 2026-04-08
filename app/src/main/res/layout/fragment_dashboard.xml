@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background">
+    android:background="@color/surface">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,20 +12,24 @@
 
         <TextView
             android:id="@+id/titleText"
+            style="@style/PetPlanner.Text.Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/home_title"
-            android:textColor="@color/onBackground"
-            android:textSize="28sp"
-            android:textStyle="bold" />
+            android:text="@string/home_title" />
 
         <TextView
+            style="@style/PetPlanner.Text.Subtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="@string/home_subtitle"
-            android:textColor="@color/onBackgroundSecondary"
-            android:textSize="14sp" />
+            android:text="@string/home_subtitle" />
+
+        <ImageView
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginTop="@dimen/spacing_large"
+            android:src="@drawable/ic_pet"
+            android:contentDescription="Pet illustration" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -33,18 +37,16 @@
             android:layout_marginTop="@dimen/spacing_large"
             android:orientation="vertical"
             android:padding="@dimen/padding_medium"
-            android:background="@color/cardBackground"
+            android:background="@drawable/bg_card"
             android:elevation="@dimen/card_elevation"
             android:clipToPadding="false">
 
             <TextView
                 android:id="@+id/petNameText"
+                style="@style/PetPlanner.Text.CardTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/pet_name"
-                android:textColor="@color/onBackground"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:text="@string/pet_name" />
 
             <TextView
                 android:id="@+id/petSummaryText"
@@ -57,12 +59,11 @@
 
             <TextView
                 android:id="@+id/petPersonalityText"
+                style="@style/PetPlanner.Text.CardBody"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:text="@string/pet_personality"
-                android:textColor="@color/onBackgroundSecondary"
-                android:textSize="14sp" />
+                android:text="@string/pet_personality" />
         </LinearLayout>
 
         <TextView
@@ -80,7 +81,7 @@
             android:layout_marginTop="@dimen/spacing_small"
             android:orientation="vertical"
             android:padding="@dimen/padding_medium"
-            android:background="@color/cardBackground"
+            android:background="@drawable/bg_card"
             android:elevation="@dimen/card_elevation"
             android:clipToPadding="false">
 
@@ -96,7 +97,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_large"
             android:orientation="horizontal"
-            android:weightSum="2">
+            android:weightSum="2"
+            android:layout_marginBottom="@dimen/spacing_large">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -155,14 +157,11 @@
 
         <Button
             android:id="@+id/addTaskButton"
+            style="@style/PetPlanner.Button.Primary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_large"
-            android:backgroundTint="@color/primary"
-            android:text="@string/add_task_button"
-            android:textAllCaps="false"
-            android:textColor="@android:color/white"
-            android:padding="@dimen/padding_small" />
+            android:text="@string/add_task_button" />
 
     </LinearLayout>
 </ScrollView>
