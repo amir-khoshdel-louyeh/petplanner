@@ -16,6 +16,8 @@ class DashboardFragment : Fragment() {
     private lateinit var petNameText: TextView
     private lateinit var petSummaryText: TextView
     private lateinit var petPersonalityText: TextView
+    private lateinit var completedTasksText: TextView
+    private lateinit var nextReminderText: TextView
     private lateinit var moodValueText: TextView
     private lateinit var weightValueText: TextView
     private lateinit var tasksRecycler: RecyclerView
@@ -33,14 +35,24 @@ class DashboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         bindViews(view)
-        bindDashboardData(DashboardModel.samplePet())
-        bindTaskList(DashboardModel.sampleTasks())
+        bindDashboardData(LocalDataRepository.getPet())
+        bindTaskList(LocalDataRepository.getTasks())
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (this::taskAdapter.isInitialized) {
+            bindTaskList(LocalDataRepository.getTasks())
+            refreshDashboardOverview()
+        }
     }
 
     private fun bindViews(view: View) {
         petNameText = view.findViewById(R.id.petNameText)
         petSummaryText = view.findViewById(R.id.petSummaryText)
         petPersonalityText = view.findViewById(R.id.petPersonalityText)
+        completedTasksText = view.findViewById(R.id.completedTasksText)
+        nextReminderText = view.findViewById(R.id.nextReminderText)
         moodValueText = view.findViewById(R.id.moodValue)
         weightValueText = view.findViewById(R.id.weightValue)
         tasksRecycler = view.findViewById(R.id.tasksRecycler)
@@ -53,10 +65,18 @@ class DashboardFragment : Fragment() {
         petPersonalityText.text = pet.personality
         moodValueText.text = pet.mood
         weightValueText.text = pet.weight
+
+        val completedCount = LocalDataRepository.completedTaskCount()
+        completedTasksText.text = "$completedCount tasks completed"
+
+        val nextReminder = LocalDataRepository.upcomingReminders().firstOrNull()
+        nextReminderText.text = nextReminder?.let { "Next reminder: ${it.title} at ${it.scheduledTime}" } ?: "No upcoming reminders"
     }
 
     private fun bindTaskList(tasks: List<Task>) {
         taskAdapter = TaskAdapter(tasks) { updatedTask ->
+            LocalDataRepository.toggleTaskCompleted(updatedTask.id)
+            refreshDashboardOverview()
             Toast.makeText(requireContext(), "Task updated: ${updatedTask.title}", Toast.LENGTH_SHORT).show()
         }
         tasksRecycler.layoutManager = LinearLayoutManager(requireContext())
@@ -71,6 +91,7 @@ class DashboardFragment : Fragment() {
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 taskAdapter.toggleTaskCompleted(viewHolder.bindingAdapterPosition)
+                refreshDashboardOverview()
             }
         }
 
@@ -81,5 +102,13 @@ class DashboardFragment : Fragment() {
                 .addToBackStack(null)
                 .commit()
         }
+    }
+
+    private fun refreshDashboardOverview() {
+        val completedCount = LocalDataRepository.completedTaskCount()
+        completedTasksText.text = "$completedCount tasks completed"
+
+        val nextReminder = LocalDataRepository.upcomingReminders().firstOrNull()
+        nextReminderText.text = nextReminder?.let { "Next reminder: ${it.title} at ${it.scheduledTime}" } ?: "No upcoming reminders"
     }
 }

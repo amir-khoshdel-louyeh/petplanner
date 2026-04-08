@@ -66,6 +66,43 @@
                 android:text="@string/pet_personality" />
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_large"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_medium"
+            android:background="@drawable/bg_card"
+            android:elevation="@dimen/card_elevation"
+            android:clipToPadding="false">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Overview"
+                android:textColor="@color/onBackground"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/completedTasksText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="0 tasks completed"
+                android:textColor="@color/onBackgroundSecondary"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/nextReminderText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Next reminder: -"
+                android:textColor="@color/onBackgroundSecondary"
+                android:textSize="14sp" />
+        </LinearLayout>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
