@@ -16,10 +16,10 @@ class MainActivity : AppCompatActivity() {
         bottomNav.setOnItemSelectedListener { item ->
             val fragment = when (item.itemId) {
                 R.id.navigation_dashboard -> DashboardFragment()
-                R.id.navigation_profile -> PlaceholderFragment.newInstance(getString(R.string.pet_profile_label))
-                R.id.navigation_health -> PlaceholderFragment.newInstance(getString(R.string.health_label))
-                R.id.navigation_calendar -> PlaceholderFragment.newInstance(getString(R.string.calendar_label))
-                R.id.navigation_settings -> PlaceholderFragment.newInstance(getString(R.string.settings_label))
+                R.id.navigation_profile -> PetProfileFragment()
+                R.id.navigation_health -> HealthMoodFragment()
+                R.id.navigation_calendar -> CalendarFragment()
+                R.id.navigation_settings -> SettingsFragment()
                 else -> DashboardFragment()
             }
             supportFragmentManager.beginTransaction()
