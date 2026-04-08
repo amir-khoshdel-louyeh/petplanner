@@ -38,29 +38,12 @@
             android:textColor="@color/onBackgroundSecondary"
             android:textSize="14sp" />
 
-        <TextView
+        <LinearLayout
+            android:id="@+id/remindersContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Morning walk • 8:00 AM"
-            android:textColor="@color/onBackground"
-            android:textSize="18sp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Feed Buddy breakfast • 12:00 PM"
-            android:textColor="@color/onBackground"
-            android:textSize="18sp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Medication check • 6:00 PM"
-            android:textColor="@color/onBackground"
-            android:textSize="18sp" />
+            android:layout_marginTop="16dp"
+            android:orientation="vertical" />
 
     </LinearLayout>
 </ScrollView>
