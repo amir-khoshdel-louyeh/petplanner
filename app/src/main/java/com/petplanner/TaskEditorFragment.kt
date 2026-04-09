@@ -30,7 +30,15 @@ class TaskEditorFragment : Fragment() {
                 Toast.makeText(requireContext(), "Please enter a task title.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
+
+            val task = Task(
+                id = "task-${System.currentTimeMillis()}",
+                title = title,
+                completed = false
+            )
+            LocalDataRepository.addTask(task)
             Toast.makeText(requireContext(), "Task saved: $title", Toast.LENGTH_SHORT).show()
+            parentFragmentManager.popBackStack()
         }
     }
 }
