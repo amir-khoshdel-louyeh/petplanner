@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/surface">
+    android:background="@drawable/bg_screen">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -10,203 +10,266 @@
         android:orientation="vertical"
         android:padding="@dimen/padding_large">
 
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@drawable/bg_header"
+            android:padding="@dimen/padding_large">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:weightSum="1">
+
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:src="@drawable/ic_pet"
+                        android:tint="@android:color/white"
+                        android:contentDescription="App icon" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:text="Pet Planner"
+                        android:textColor="@android:color/white"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:src="@drawable/ic_pet"
+                        android:tint="@android:color/white"
+                        android:contentDescription="Profile icon" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/greetingText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Hello, Emma!"
+                    android:textColor="@android:color/white"
+                    android:textSize="26sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/greetingSubtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="Your pets have a fun day ahead."
+                    android:textColor="#D5E9F7"
+                    android:textSize="14sp" />
+            </LinearLayout>
+        </FrameLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="-32dp"
             android:orientation="horizontal"
-            android:padding="@dimen/padding_medium"
-            android:background="@drawable/bg_card"
-            android:elevation="@dimen/card_elevation"
-            android:clipToPadding="false">
-
-            <ImageView
-                android:layout_width="72dp"
-                android:layout_height="72dp"
-                android:src="@drawable/ic_pet"
-                android:contentDescription="Pet illustration" />
+            android:weightSum="4"
+            android:paddingTop="4dp">
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:layout_marginStart="16dp">
-
+                android:background="@drawable/bg_small_card"
+                android:padding="12dp"
+                android:layout_marginEnd="8dp">
                 <TextView
-                    style="@style/PetPlanner.Text.Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/home_title" />
-
+                    android:text="Tasks"
+                    android:textColor="@color/onBackground"
+                    android:textSize="12sp" />
                 <TextView
-                    style="@style/PetPlanner.Text.Subtitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="Today’s pet care snapshot" />
+                    android:layout_marginTop="8dp"
+                    android:text="12"
+                    android:textColor="@color/primary"
+                    android:textStyle="bold"
+                    android:textSize="18sp" />
+            </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:background="@drawable/bg_small_card"
+                android:padding="12dp"
+                android:layout_marginEnd="8dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Meals"
+                    android:textColor="@color/onBackground"
+                    android:textSize="12sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="4"
+                    android:textColor="@color/secondary"
+                    android:textStyle="bold"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:background="@drawable/bg_small_card"
+                android:padding="12dp"
+                android:layout_marginEnd="8dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Health"
+                    android:textColor="@color/onBackground"
+                    android:textSize="12sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Good"
+                    android:textColor="@color/success"
+                    android:textStyle="bold"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:background="@drawable/bg_small_card"
+                android:padding="12dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pets"
+                    android:textColor="@color/onBackground"
+                    android:textSize="12sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="2"
+                    android:textColor="@color/primary"
+                    android:textStyle="bold"
+                    android:textSize="18sp" />
             </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_large"
+            android:layout_marginTop="16dp"
             android:orientation="vertical"
             android:padding="@dimen/padding_medium"
             android:background="@drawable/bg_card"
             android:elevation="@dimen/card_elevation"
             android:clipToPadding="false">
-
-            <TextView
-                android:id="@+id/petNameText"
-                style="@style/PetPlanner.Text.CardTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/pet_name" />
-
-            <TextView
-                android:id="@+id/petSummaryText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="@string/pet_summary"
-                android:textColor="@color/onBackgroundSecondary"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/petPersonalityText"
-                style="@style/PetPlanner.Text.CardBody"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:text="@string/pet_personality" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_large"
-            android:orientation="vertical"
-            android:padding="@dimen/padding_medium"
-            android:background="@drawable/bg_card"
-            android:elevation="@dimen/card_elevation"
-            android:clipToPadding="false">
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Overview"
+                android:text="Today’s schedule"
                 android:textColor="@color/onBackground"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/completedTasksText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="0 tasks completed"
+                android:layout_marginTop="12dp"
+                android:text="10:00 AM  •  Vet Appointment"
                 android:textColor="@color/onBackgroundSecondary"
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/nextReminderText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:text="Next reminder: -"
+                android:layout_marginTop="8dp"
+                android:text="4:00 PM  •  Walk in the Park"
                 android:textColor="@color/onBackgroundSecondary"
                 android:textSize="14sp" />
         </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_large"
-            android:text="@string/today_tasks_title"
-            android:textColor="@color/onBackground"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_small"
+            android:layout_marginTop="16dp"
             android:orientation="vertical"
             android:padding="@dimen/padding_medium"
             android:background="@drawable/bg_card"
             android:elevation="@dimen/card_elevation"
             android:clipToPadding="false">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pet of the Day"
+                android:textColor="@color/onBackground"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/tasksRecycler"
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:nestedScrollingEnabled="false" />
+                android:layout_marginTop="12dp"
+                android:text="Luna &amp; Max"
+                android:textColor="@color/onBackgroundSecondary"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Playtime Fun"
+                android:textColor="@color/primary"
+                android:textSize="14sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_large"
-            android:orientation="horizontal"
-            android:weightSum="2"
-            android:layout_marginBottom="@dimen/spacing_large">
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_medium"
+            android:background="@drawable/bg_small_card"
+            android:clipToPadding="false">
 
-            <LinearLayout
-                android:layout_width="0dp"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:padding="@dimen/padding_medium"
-                android:background="@color/cardBackground"
-                android:elevation="@dimen/card_elevation">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/mood_label"
-                    android:textColor="@color/onBackgroundSecondary"
-                    android:textSize="14sp" />
-                <TextView
-                    android:id="@+id/moodValue"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/mood_value"
-                    android:textColor="@color/primary"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
+                android:text="To-do list"
+                android:textColor="@color/onBackground"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
-            <View
-                android:layout_width="@dimen/spacing_large"
-                android:layout_height="match_parent" />
-
-            <LinearLayout
-                android:layout_width="0dp"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/tasksRecycler"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:padding="@dimen/padding_medium"
-                android:background="@color/cardBackground"
-                android:elevation="@dimen/card_elevation">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/weight_label"
-                    android:textColor="@color/onBackgroundSecondary"
-                    android:textSize="14sp" />
-                <TextView
-                    android:id="@+id/weightValue"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/weight_value"
-                    android:textColor="@color/primary"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
+                android:nestedScrollingEnabled="false"
+                android:layout_marginTop="12dp" />
         </LinearLayout>
 
         <Button
@@ -214,9 +277,7 @@
             style="@style/PetPlanner.Button.Primary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_large"
-            android:minHeight="56dp"
-            android:contentDescription="@string/add_task_button"
+            android:layout_marginTop="24dp"
             android:text="@string/add_task_button" />
 
     </LinearLayout>
