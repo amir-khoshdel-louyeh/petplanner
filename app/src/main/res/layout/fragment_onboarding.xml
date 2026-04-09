@@ -87,6 +87,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
+                android:layout_marginBottom="20dp"
                 android:hint="@string/pet_weight_hint"
                 android:inputType="text"
                 android:background="@drawable/bg_small_card"
@@ -106,6 +107,7 @@
                 android:layout_height="160dp"
                 android:layout_marginTop="12dp"
                 android:background="@drawable/bg_small_card"
+                android:padding="8dp"
                 android:scaleType="centerCrop"
                 android:contentDescription="Pet photo preview" />
 

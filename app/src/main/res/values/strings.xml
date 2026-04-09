@@ -18,6 +18,7 @@
     <string name="onboarding_language_label">Preferred language</string>
     <string name="onboarding_reminders_label">Reminders enabled</string>
     <string name="onboarding_reminders_description">Receive daily reminders for pet care</string>
+    <string name="settings_language_label">Language</string>
     <string name="back_button">Back</string>
     <string name="next_button">Next</string>
     <string name="finish_button">Finish</string>
