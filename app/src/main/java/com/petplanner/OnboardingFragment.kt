@@ -48,24 +48,22 @@ class OnboardingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         bindViews(view)
         setupLanguageSpinner()
-        showStep(1)
+        showStep(2)
 
         choosePhotoButton.setOnClickListener {
             imagePicker.launch("image/*")
         }
 
         nextButton.setOnClickListener {
-            if (validateStepOne()) {
-                showStep(2)
-            }
-        }
-
-        backButton.setOnClickListener {
             showStep(1)
         }
 
+        backButton.setOnClickListener {
+            showStep(2)
+        }
+
         finishButton.setOnClickListener {
-            if (saveOnboardingData(requireContext())) {
+            if (validateStepOne() && saveOnboardingData(requireContext())) {
                 if (activity is MainActivity) {
                     (activity as MainActivity).completeOnboarding()
                 }
@@ -99,12 +97,12 @@ class OnboardingFragment : Fragment() {
 
     private fun showStep(step: Int) {
         currentStep = step
-        stepOneContainer.visibility = if (step == 1) View.VISIBLE else View.GONE
         stepTwoContainer.visibility = if (step == 2) View.VISIBLE else View.GONE
-        backButton.visibility = if (step == 1) View.GONE else View.VISIBLE
-        nextButton.visibility = if (step == 1) View.VISIBLE else View.GONE
-        finishButton.visibility = if (step == 2) View.VISIBLE else View.GONE
-        stepIndicator.text = if (step == 1) getString(R.string.onboarding_step_one) else getString(R.string.onboarding_step_two)
+        stepOneContainer.visibility = if (step == 1) View.VISIBLE else View.GONE
+        backButton.visibility = if (step == 1) View.VISIBLE else View.GONE
+        nextButton.visibility = if (step == 2) View.VISIBLE else View.GONE
+        finishButton.visibility = if (step == 1) View.VISIBLE else View.GONE
+        stepIndicator.text = if (step == 2) getString(R.string.onboarding_step_one) else getString(R.string.onboarding_step_two)
     }
 
     private fun validateStepOne(): Boolean {
