@@ -60,6 +60,7 @@ class TaskAdapter(
                 val updatedTask = taskList[position].copy(completed = isChecked)
                 taskList[position] = updatedTask
                 notifyItemChanged(position)
+                animateTaskCheck(taskCheckBox)
                 onTaskToggle(updatedTask)
             }
 
@@ -69,8 +70,24 @@ class TaskAdapter(
                 val updatedTask = taskList[position].copy(completed = !taskList[position].completed)
                 taskList[position] = updatedTask
                 notifyItemChanged(position)
+                animateTaskCheck(taskCheckBox)
                 onTaskToggle(updatedTask)
             }
+        }
+
+        private fun animateTaskCheck(view: CheckBox) {
+            view.animate()
+                .scaleX(1.05f)
+                .scaleY(1.05f)
+                .setDuration(120)
+                .withEndAction {
+                    view.animate()
+                        .scaleX(1f)
+                        .scaleY(1f)
+                        .setDuration(120)
+                        .start()
+                }
+                .start()
         }
     }
 }
