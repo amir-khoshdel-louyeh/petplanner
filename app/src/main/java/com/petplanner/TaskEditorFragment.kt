@@ -8,6 +8,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 
 class TaskEditorFragment : Fragment() {
     override fun onCreateView(
@@ -36,9 +38,11 @@ class TaskEditorFragment : Fragment() {
                 title = title,
                 completed = false
             )
-            LocalDataRepository.addTask(task)
-            Toast.makeText(requireContext(), "Task saved: $title", Toast.LENGTH_SHORT).show()
-            parentFragmentManager.popBackStack()
+            viewLifecycleOwner.lifecycleScope.launch {
+                LocalDataRepository.addTask(task)
+                Toast.makeText(requireContext(), "Task saved: $title", Toast.LENGTH_SHORT).show()
+                parentFragmentManager.popBackStack()
+            }
         }
     }
 }

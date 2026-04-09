@@ -30,13 +30,14 @@ class TaskAdapter(
         notifyItemInserted(taskList.size - 1)
     }
 
-    fun toggleTaskCompleted(position: Int) {
-        if (position < 0 || position >= taskList.size) return
+    fun toggleTaskCompleted(position: Int): Task? {
+        if (position < 0 || position >= taskList.size) return null
         val task = taskList[position]
         val updated = task.copy(completed = !task.completed)
         taskList[position] = updated
         notifyItemChanged(position)
         onTaskToggle(updated)
+        return updated
     }
 
     fun updateTask(updated: Task) {

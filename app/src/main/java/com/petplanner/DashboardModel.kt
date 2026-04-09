@@ -2,6 +2,8 @@ package com.petplanner
 
 data class Pet(
     val name: String,
+    val breed: String,
+    val age: String,
     val summary: String,
     val personality: String,
     val mood: String,
@@ -17,6 +19,8 @@ data class Task(
 object DashboardModel {
     fun samplePet(): Pet = Pet(
         name = "Buddy",
+        breed = "Golden Retriever",
+        age = "3 yrs",
         summary = "Golden Retriever · 3 yrs · Dog",
         personality = "Personality: playful, friendly, loves morning walks",
         mood = "Happy",

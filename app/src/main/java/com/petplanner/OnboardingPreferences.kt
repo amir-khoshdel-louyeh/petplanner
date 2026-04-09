@@ -53,7 +53,15 @@ object OnboardingPreferences {
 
         val summary = "$breed · $age · Pet"
         val personality = "Personality: playful, curious, loves daily routines"
-        return Pet(name = name, summary = summary, personality = personality, mood = "Happy", weight = weight)
+        return Pet(
+            name = name,
+            breed = breed,
+            age = age,
+            summary = summary,
+            personality = personality,
+            mood = "Happy",
+            weight = weight
+        )
     }
 
     fun getPetPhotoUri(context: Context): String? {

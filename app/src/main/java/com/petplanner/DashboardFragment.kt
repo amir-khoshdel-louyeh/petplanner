@@ -8,9 +8,11 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.launch
 
 class DashboardFragment : Fragment() {
     private lateinit var greetingText: TextView
@@ -30,8 +32,12 @@ class DashboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         bindViews(view)
-        bindDashboardData(LocalDataRepository.getPet())
-        bindTaskList(LocalDataRepository.getTasks())
+        loadDashboard()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        loadDashboard()
     }
 
     private fun bindViews(view: View) {
@@ -41,15 +47,31 @@ class DashboardFragment : Fragment() {
         addTaskButton = view.findViewById(R.id.addTaskButton)
     }
 
-    private fun bindDashboardData(pet: Pet) {
+    private fun loadDashboard() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            val pet = LocalDataRepository.getPet()
+            bindDashboardData(pet)
+            val tasks = LocalDataRepository.getTasks()
+            bindTaskList(tasks)
+        }
+    }
+
+    private fun bindDashboardData(pet: Pet?) {
+        if (pet == null) {
+            greetingText.text = getString(R.string.home_title)
+            greetingSubtitle.text = getString(R.string.home_subtitle)
+            return
+        }
         greetingText.text = "Hello, ${pet.name}!"
         greetingSubtitle.text = pet.summary
     }
 
     private fun bindTaskList(tasks: List<Task>) {
         taskAdapter = TaskAdapter(tasks) { updatedTask ->
-            LocalDataRepository.toggleTaskCompleted(updatedTask.id)
-            Toast.makeText(requireContext(), "Task updated: ${updatedTask.title}", Toast.LENGTH_SHORT).show()
+            viewLifecycleOwner.lifecycleScope.launch {
+                LocalDataRepository.toggleTaskCompleted(updatedTask.id)
+                Toast.makeText(requireContext(), "Task updated: ${updatedTask.title}", Toast.LENGTH_SHORT).show()
+            }
         }
         tasksRecycler.layoutManager = LinearLayoutManager(requireContext())
         tasksRecycler.adapter = taskAdapter
@@ -62,7 +84,12 @@ class DashboardFragment : Fragment() {
             ): Boolean = false
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                taskAdapter.toggleTaskCompleted(viewHolder.bindingAdapterPosition)
+                val updatedTask = taskAdapter.toggleTaskCompleted(viewHolder.bindingAdapterPosition)
+                if (updatedTask != null) {
+                    viewLifecycleOwner.lifecycleScope.launch {
+                        LocalDataRepository.toggleTaskCompleted(updatedTask.id)
+                    }
+                }
             }
         }
 

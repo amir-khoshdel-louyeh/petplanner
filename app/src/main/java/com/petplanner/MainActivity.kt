@@ -12,9 +12,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         bottomNav = findViewById(R.id.bottomNavigation)
+        LocalDataRepository.initialize(this)
 
         if (OnboardingPreferences.isOnboardingComplete(this)) {
-            LocalDataRepository.loadSavedPet(this)
             showAppContent()
         } else {
             showOnboarding()

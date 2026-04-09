@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 
 class OnboardingFragment : Fragment() {
     private lateinit var stepOneContainer: View
@@ -63,9 +65,12 @@ class OnboardingFragment : Fragment() {
         }
 
         finishButton.setOnClickListener {
-            if (validateStepOne() && saveOnboardingData(requireContext())) {
-                if (activity is MainActivity) {
-                    (activity as MainActivity).completeOnboarding()
+            if (validateStepOne()) {
+                viewLifecycleOwner.lifecycleScope.launch {
+                    val success = saveOnboardingData(requireContext())
+                    if (success && activity is MainActivity) {
+                        (activity as MainActivity).completeOnboarding()
+                    }
                 }
             }
         }
@@ -125,17 +130,30 @@ class OnboardingFragment : Fragment() {
         return true
     }
 
-    private fun saveOnboardingData(context: Context): Boolean {
+    private suspend fun saveOnboardingData(context: Context): Boolean {
         val name = petNameInput.text.toString().trim()
         val breed = petBreedInput.text.toString().trim()
         val age = petAgeInput.text.toString().trim()
         val weight = petWeightInput.text.toString().trim()
         val language = languageSpinner.selectedItem.toString()
 
+        val summary = "$breed · $age · Pet"
+        val personality = "Personality: playful, curious, loves daily routines"
+        val pet = Pet(
+            name = name,
+            breed = breed,
+            age = age,
+            summary = summary,
+            personality = personality,
+            mood = "Happy",
+            weight = weight
+        )
+
         OnboardingPreferences.savePetProfile(context, name, breed, age, weight, petPhotoUri?.toString())
         OnboardingPreferences.saveLanguage(context, language)
         OnboardingPreferences.setOnboardingComplete(context, true)
-        LocalDataRepository.loadSavedPet(context)
+        LocalDataRepository.savePetProfile(pet)
+        LocalDataRepository.seedInitialDataIfNeeded()
 
         showToast("Setup complete! Welcome to PetPlanner.")
         return true

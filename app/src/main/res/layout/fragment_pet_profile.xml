@@ -39,6 +39,7 @@
             android:textSize="14sp" />
 
         <TextView
+            android:id="@+id/petNameValue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -56,6 +57,7 @@
             android:textSize="14sp" />
 
         <TextView
+            android:id="@+id/petBreedValue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -72,6 +74,7 @@
             android:textSize="14sp" />
 
         <TextView
+            android:id="@+id/petAgeValue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -83,11 +86,29 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Medical notes"
+            android:text="Weight"
             android:textColor="@color/onBackgroundSecondary"
             android:textSize="14sp" />
 
         <TextView
+            android:id="@+id/petWeightValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="72 lbs"
+            android:textColor="@color/onBackground"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="About"
+            android:textColor="@color/onBackgroundSecondary"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/petPersonalityValue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
