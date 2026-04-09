@@ -21,6 +21,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun completeOnboarding() {
+        showAppContent()
+    }
+
     private fun showAppContent() {
         bottomNav.visibility = View.VISIBLE
         setupBottomNavigation()

@@ -1,7 +1,7 @@
 package com.petplanner
 
 object LocalDataRepository {
-    private val pet = Pet(
+    private var pet = Pet(
         name = "Buddy",
         summary = "Golden Retriever · 3 yrs · Dog",
         personality = "Personality: playful, friendly, loves morning walks",
@@ -22,6 +22,12 @@ object LocalDataRepository {
     )
 
     fun getPet(): Pet = pet
+
+    fun loadSavedPet(context: android.content.Context) {
+        OnboardingPreferences.loadPetProfile(context)?.let { savedPet ->
+            pet = savedPet
+        }
+    }
 
     fun getTasks(): List<Task> = tasks.toList()
 
