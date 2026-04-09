@@ -198,6 +198,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_large"
+            android:minHeight="56dp"
+            android:contentDescription="@string/add_task_button"
             android:text="@string/add_task_button" />
 
     </LinearLayout>
