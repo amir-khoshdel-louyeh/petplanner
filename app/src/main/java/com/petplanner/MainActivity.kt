@@ -1,18 +1,39 @@
 package com.petplanner
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var bottomNav: BottomNavigationView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        bottomNav = findViewById(R.id.bottomNavigation)
+
+        if (OnboardingPreferences.isOnboardingComplete(this)) {
+            LocalDataRepository.loadSavedPet(this)
+            showAppContent()
+        } else {
+            showOnboarding()
+        }
+    }
+
+    private fun showAppContent() {
+        bottomNav.visibility = View.VISIBLE
         setupBottomNavigation()
     }
 
+    private fun showOnboarding() {
+        bottomNav.visibility = View.GONE
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.navHostFragment, OnboardingFragment())
+            .commit()
+    }
+
     private fun setupBottomNavigation() {
-        val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigation)
         bottomNav.setOnItemSelectedListener { item ->
             val fragment = when (item.itemId) {
                 R.id.navigation_dashboard -> DashboardFragment()
