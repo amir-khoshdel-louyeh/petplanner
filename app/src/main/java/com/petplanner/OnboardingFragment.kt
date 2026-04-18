@@ -18,8 +18,10 @@ class OnboardingFragment : Fragment() {
     private lateinit var stepIndicator: TextView
     private lateinit var petNameInput: EditText
     private lateinit var petBreedInput: EditText
+    private lateinit var petTypeRadioGroup: RadioGroup
     private lateinit var petAgeInput: EditText
     private lateinit var petWeightInput: EditText
+    private lateinit var weightUnitSpinner: Spinner
     private lateinit var choosePhotoButton: Button
     private lateinit var petPhotoPreview: ImageView
     private lateinit var languageSpinner: Spinner
@@ -50,6 +52,7 @@ class OnboardingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         bindViews(view)
         setupLanguageSpinner()
+        setupWeightUnitSpinner()
         showStep(2)
 
         choosePhotoButton.setOnClickListener {
@@ -82,8 +85,10 @@ class OnboardingFragment : Fragment() {
         stepIndicator = view.findViewById(R.id.stepIndicator)
         petNameInput = view.findViewById(R.id.petNameInput)
         petBreedInput = view.findViewById(R.id.petBreedInput)
+        petTypeRadioGroup = view.findViewById(R.id.petTypeRadioGroup)
         petAgeInput = view.findViewById(R.id.petAgeInput)
         petWeightInput = view.findViewById(R.id.petWeightInput)
+        weightUnitSpinner = view.findViewById(R.id.weightUnitSpinner)
         choosePhotoButton = view.findViewById(R.id.choosePhotoButton)
         petPhotoPreview = view.findViewById(R.id.petPhotoPreview)
         languageSpinner = view.findViewById(R.id.languageSpinner)
@@ -119,12 +124,20 @@ class OnboardingFragment : Fragment() {
             showToast("Please enter your pet's breed")
             return false
         }
-        if (petAgeInput.text.isNullOrBlank()) {
-            showToast("Please enter your pet's age")
+        val ageText = petAgeInput.text.toString().trim()
+        val ageValue = ageText.toIntOrNull()
+        if (ageText.isEmpty() || ageValue == null || ageValue <= 0) {
+            showToast("Please enter a valid numeric age")
             return false
         }
-        if (petWeightInput.text.isNullOrBlank()) {
-            showToast("Please enter your pet's weight")
+        val weightText = petWeightInput.text.toString().trim()
+        val weightValue = weightText.toFloatOrNull()
+        if (weightText.isEmpty() || weightValue == null || weightValue <= 0f) {
+            showToast("Please enter a valid numeric weight")
+            return false
+        }
+        if (weightUnitSpinner.selectedItem == null) {
+            showToast("Please select a weight unit")
             return false
         }
         return true
@@ -134,10 +147,13 @@ class OnboardingFragment : Fragment() {
         val name = petNameInput.text.toString().trim()
         val breed = petBreedInput.text.toString().trim()
         val age = petAgeInput.text.toString().trim()
-        val weight = petWeightInput.text.toString().trim()
+        val weightValue = petWeightInput.text.toString().trim()
+        val weightUnit = weightUnitSpinner.selectedItem.toString()
+        val weight = "$weightValue $weightUnit"
         val language = languageSpinner.selectedItem.toString()
+        val petType = if (petTypeRadioGroup.checkedRadioButtonId == R.id.petTypeCatRadio) "Cat" else "Dog"
 
-        val summary = "$breed · $age · Pet"
+        val summary = "$breed · $age · $petType"
         val personality = "Personality: playful, curious, loves daily routines"
         val pet = Pet(
             name = name,
@@ -157,6 +173,13 @@ class OnboardingFragment : Fragment() {
 
         showToast("Setup complete! Welcome to PetPlanner.")
         return true
+    }
+
+    private fun setupWeightUnitSpinner() {
+        val units = resources.getStringArray(R.array.weight_unit_options)
+        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, units)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        weightUnitSpinner.adapter = adapter
     }
 
     private fun showToast(message: String) {

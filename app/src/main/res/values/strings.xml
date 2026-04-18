@@ -10,8 +10,16 @@
     <string name="onboarding_pet_profile_title">Pet profile</string>
     <string name="pet_name_hint">Pet name</string>
     <string name="pet_breed_hint">Breed</string>
+    <string name="pet_type_label">Pet type</string>
+    <string name="pet_type_dog">Dog</string>
+    <string name="pet_type_cat">Cat</string>
     <string name="pet_age_hint">Age</string>
     <string name="pet_weight_hint">Weight</string>
+    <string name="pet_weight_unit_label">Weight unit</string>
+    <string-array name="weight_unit_options">
+        <item>kg</item>
+        <item>lbs</item>
+    </string-array>
     <string name="onboarding_pet_photo_title">Pet photo</string>
     <string name="onboarding_choose_photo">Choose photo</string>
     <string name="onboarding_settings_title">App settings</string>
