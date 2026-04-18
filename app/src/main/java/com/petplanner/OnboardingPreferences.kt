@@ -11,6 +11,9 @@ object OnboardingPreferences {
     private const val KEY_PET_WEIGHT = "pref_pet_weight"
     private const val KEY_PET_PHOTO_URI = "pref_pet_photo_uri"
     private const val KEY_LANGUAGE = "pref_language"
+    private const val KEY_USER_NAME = "pref_user_name"
+    private const val KEY_USER_AGE = "pref_user_age"
+    private const val KEY_USER_GENDER = "pref_user_gender"
 
     private fun sharedPreferences(context: Context) =
         context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
@@ -74,5 +77,25 @@ object OnboardingPreferences {
 
     fun getLanguage(context: Context): String {
         return sharedPreferences(context).getString(KEY_LANGUAGE, "English") ?: "English"
+    }
+
+    fun saveUserProfile(context: Context, name: String, age: String, gender: String) {
+        sharedPreferences(context).edit()
+            .putString(KEY_USER_NAME, name)
+            .putString(KEY_USER_AGE, age)
+            .putString(KEY_USER_GENDER, gender)
+            .apply()
+    }
+
+    fun getUserName(context: Context): String? {
+        return sharedPreferences(context).getString(KEY_USER_NAME, null)
+    }
+
+    fun getUserAge(context: Context): String? {
+        return sharedPreferences(context).getString(KEY_USER_AGE, null)
+    }
+
+    fun getUserGender(context: Context): String? {
+        return sharedPreferences(context).getString(KEY_USER_GENDER, null)
     }
 }

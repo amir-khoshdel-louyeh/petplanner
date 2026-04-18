@@ -16,7 +16,6 @@ import kotlinx.coroutines.launch
 
 class DashboardFragment : Fragment() {
     private lateinit var greetingText: TextView
-    private lateinit var greetingSubtitle: TextView
     private lateinit var tasksRecycler: RecyclerView
     private lateinit var addTaskButton: Button
     private lateinit var taskAdapter: TaskAdapter
@@ -42,7 +41,6 @@ class DashboardFragment : Fragment() {
 
     private fun bindViews(view: View) {
         greetingText = view.findViewById(R.id.greetingText)
-        greetingSubtitle = view.findViewById(R.id.greetingSubtitle)
         tasksRecycler = view.findViewById(R.id.tasksRecycler)
         addTaskButton = view.findViewById(R.id.addTaskButton)
     }
@@ -57,13 +55,12 @@ class DashboardFragment : Fragment() {
     }
 
     private fun bindDashboardData(pet: Pet?) {
-        if (pet == null) {
+        val userName = OnboardingPreferences.getUserName(requireContext())
+        if (userName.isNullOrBlank()) {
             greetingText.text = getString(R.string.home_title)
-            greetingSubtitle.text = getString(R.string.home_subtitle)
-            return
+        } else {
+            greetingText.text = "Hello $userName"
         }
-        greetingText.text = "Hello, ${pet.name}!"
-        greetingSubtitle.text = pet.summary
     }
 
     private fun bindTaskList(tasks: List<Task>) {

@@ -3,10 +3,11 @@
     <string name="app_name">PetPlanner</string>
     <string name="home_title">PetPlanner</string>
     <string name="home_subtitle">Daily care, reminders, and pet profiles in one place</string>
-    <string name="onboarding_title">Let’s set up your pet</string>
-    <string name="onboarding_subtitle">Tell us about your pet and configure your app preferences.</string>
-    <string name="onboarding_step_one">Step 1 of 2: Pet profile</string>
-    <string name="onboarding_step_two">Step 2 of 2: App preferences</string>
+    <string name="onboarding_title">Let’s set up your Account</string>
+    <string name="onboarding_title_pet_profile">Let’s set up your pet profile</string>
+    <string name="onboarding_subtitle">Please tell us about yourself.</string>
+    <string name="onboarding_step_one">Step 1 of 2: User profile</string>
+    <string name="onboarding_step_two">Step 2 of 2: Pet profile</string>
     <string name="onboarding_pet_profile_title">Pet profile</string>
     <string name="pet_name_hint">Pet name</string>
     <string name="pet_breed_hint">Breed</string>
@@ -22,7 +23,13 @@
     </string-array>
     <string name="onboarding_pet_photo_title">Pet photo</string>
     <string name="onboarding_choose_photo">Choose photo</string>
-    <string name="onboarding_settings_title">App settings</string>
+    <string name="onboarding_user_profile_title">Your profile</string>
+    <string name="user_name_hint">Your name</string>
+    <string name="user_age_hint">Your age</string>
+    <string name="user_gender_label">Your gender</string>
+    <string name="gender_male">Male</string>
+    <string name="gender_female">Female</string>
+    <string name="gender_other">Other</string>
     <string name="onboarding_language_label">Preferred language</string>
     <string name="onboarding_reminders_label">Reminders enabled</string>
     <string name="onboarding_reminders_description">Receive daily reminders for pet care</string>

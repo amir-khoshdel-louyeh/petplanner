@@ -15,6 +15,8 @@ import kotlinx.coroutines.launch
 class OnboardingFragment : Fragment() {
     private lateinit var stepOneContainer: View
     private lateinit var stepTwoContainer: View
+    private lateinit var onboardingTitle: TextView
+    private lateinit var onboardingSubtitle: TextView
     private lateinit var stepIndicator: TextView
     private lateinit var petNameInput: EditText
     private lateinit var petBreedInput: EditText
@@ -26,6 +28,9 @@ class OnboardingFragment : Fragment() {
     private lateinit var petPhotoPreview: ImageView
     private lateinit var languageSpinner: Spinner
     private lateinit var remindersSwitch: Switch
+    private lateinit var userNameInput: EditText
+    private lateinit var userAgeInput: EditText
+    private lateinit var userGenderRadioGroup: RadioGroup
     private lateinit var nextButton: Button
     private lateinit var backButton: Button
     private lateinit var finishButton: Button
@@ -60,7 +65,9 @@ class OnboardingFragment : Fragment() {
         }
 
         nextButton.setOnClickListener {
-            showStep(1)
+            if (validateStepTwo()) {
+                showStep(1)
+            }
         }
 
         backButton.setOnClickListener {
@@ -82,6 +89,8 @@ class OnboardingFragment : Fragment() {
     private fun bindViews(view: View) {
         stepOneContainer = view.findViewById(R.id.stepOneContainer)
         stepTwoContainer = view.findViewById(R.id.stepTwoContainer)
+        onboardingTitle = view.findViewById(R.id.onboardingTitle)
+        onboardingSubtitle = view.findViewById(R.id.onboardingSubtitle)
         stepIndicator = view.findViewById(R.id.stepIndicator)
         petNameInput = view.findViewById(R.id.petNameInput)
         petBreedInput = view.findViewById(R.id.petBreedInput)
@@ -93,6 +102,9 @@ class OnboardingFragment : Fragment() {
         petPhotoPreview = view.findViewById(R.id.petPhotoPreview)
         languageSpinner = view.findViewById(R.id.languageSpinner)
         remindersSwitch = view.findViewById(R.id.remindersSwitch)
+        userNameInput = view.findViewById(R.id.userNameInput)
+        userAgeInput = view.findViewById(R.id.userAgeInput)
+        userGenderRadioGroup = view.findViewById(R.id.userGenderRadioGroup)
         nextButton = view.findViewById(R.id.nextButton)
         backButton = view.findViewById(R.id.backButton)
         finishButton = view.findViewById(R.id.finishButton)
@@ -108,11 +120,11 @@ class OnboardingFragment : Fragment() {
     private fun showStep(step: Int) {
         currentStep = step
         stepTwoContainer.visibility = if (step == 2) View.VISIBLE else View.GONE
-        stepOneContainer.visibility = if (step == 1) View.VISIBLE else View.GONE
-        backButton.visibility = if (step == 1) View.VISIBLE else View.GONE
+        stepOneContainer.visibility = if (step == 1) View.VISIBLE else View.GONE        onboardingSubtitle.visibility = if (step == 1) View.VISIBLE else View.GONE        backButton.visibility = if (step == 1) View.VISIBLE else View.GONE
         nextButton.visibility = if (step == 2) View.VISIBLE else View.GONE
         finishButton.visibility = if (step == 1) View.VISIBLE else View.GONE
         stepIndicator.text = if (step == 2) getString(R.string.onboarding_step_one) else getString(R.string.onboarding_step_two)
+        onboardingTitle.text = if (step == 1) getString(R.string.onboarding_title_pet_profile) else getString(R.string.onboarding_title)
     }
 
     private fun validateStepOne(): Boolean {
@@ -143,6 +155,24 @@ class OnboardingFragment : Fragment() {
         return true
     }
 
+    private fun validateStepTwo(): Boolean {
+        if (userNameInput.text.isNullOrBlank()) {
+            showToast("Please enter your name")
+            return false
+        }
+        val ageText = userAgeInput.text.toString().trim()
+        val ageValue = ageText.toIntOrNull()
+        if (ageText.isEmpty() || ageValue == null || ageValue <= 0) {
+            showToast("Please enter a valid numeric age")
+            return false
+        }
+        if (userGenderRadioGroup.checkedRadioButtonId == -1) {
+            showToast("Please select your gender")
+            return false
+        }
+        return true
+    }
+
     private suspend fun saveOnboardingData(context: Context): Boolean {
         val name = petNameInput.text.toString().trim()
         val breed = petBreedInput.text.toString().trim()
@@ -152,6 +182,14 @@ class OnboardingFragment : Fragment() {
         val weight = "$weightValue $weightUnit"
         val language = languageSpinner.selectedItem.toString()
         val petType = if (petTypeRadioGroup.checkedRadioButtonId == R.id.petTypeCatRadio) "Cat" else "Dog"
+
+        val userName = userNameInput.text.toString().trim()
+        val userAge = userAgeInput.text.toString().trim()
+        val userGender = when (userGenderRadioGroup.checkedRadioButtonId) {
+            R.id.userGenderFemaleRadio -> "Female"
+            R.id.userGenderOtherRadio -> "Other"
+            else -> "Male"
+        }
 
         val summary = "$breed · $age · $petType"
         val personality = "Personality: playful, curious, loves daily routines"
@@ -166,6 +204,7 @@ class OnboardingFragment : Fragment() {
         )
 
         OnboardingPreferences.savePetProfile(context, name, breed, age, weight, petPhotoUri?.toString())
+        OnboardingPreferences.saveUserProfile(context, userName, userAge, userGender)
         OnboardingPreferences.saveLanguage(context, language)
         OnboardingPreferences.setOnboardingComplete(context, true)
         LocalDataRepository.savePetProfile(pet)

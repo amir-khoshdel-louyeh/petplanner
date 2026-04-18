@@ -38,8 +38,8 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
                         android:layout_weight="1"
+                        android:gravity="center"
                         android:text="Pet Planner"
                         android:textColor="@android:color/white"
                         android:textSize="22sp"
@@ -62,15 +62,6 @@
                     android:textColor="@android:color/white"
                     android:textSize="26sp"
                     android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/greetingSubtitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:text="Your pets have a fun day ahead."
-                    android:textColor="#D5E9F7"
-                    android:textSize="14sp" />
             </LinearLayout>
         </FrameLayout>
 
