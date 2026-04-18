@@ -23,7 +23,6 @@ class OnboardingFragment : Fragment() {
     private lateinit var petTypeRadioGroup: RadioGroup
     private lateinit var petAgeInput: EditText
     private lateinit var petWeightInput: EditText
-    private lateinit var weightUnitSpinner: Spinner
     private lateinit var choosePhotoButton: Button
     private lateinit var petPhotoPreview: ImageView
     private lateinit var languageSpinner: Spinner
@@ -57,25 +56,24 @@ class OnboardingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         bindViews(view)
         setupLanguageSpinner()
-        setupWeightUnitSpinner()
-        showStep(2)
+        showStep(1)
 
         choosePhotoButton.setOnClickListener {
             imagePicker.launch("image/*")
         }
 
         nextButton.setOnClickListener {
-            if (validateStepTwo()) {
-                showStep(1)
+            if (validateStepOne()) {
+                showStep(2)
             }
         }
 
         backButton.setOnClickListener {
-            showStep(2)
+            showStep(1)
         }
 
         finishButton.setOnClickListener {
-            if (validateStepOne()) {
+            if (validateStepTwo()) {
                 viewLifecycleOwner.lifecycleScope.launch {
                     val success = saveOnboardingData(requireContext())
                     if (success && activity is MainActivity) {
@@ -97,7 +95,6 @@ class OnboardingFragment : Fragment() {
         petTypeRadioGroup = view.findViewById(R.id.petTypeRadioGroup)
         petAgeInput = view.findViewById(R.id.petAgeInput)
         petWeightInput = view.findViewById(R.id.petWeightInput)
-        weightUnitSpinner = view.findViewById(R.id.weightUnitSpinner)
         choosePhotoButton = view.findViewById(R.id.choosePhotoButton)
         petPhotoPreview = view.findViewById(R.id.petPhotoPreview)
         languageSpinner = view.findViewById(R.id.languageSpinner)
@@ -120,14 +117,34 @@ class OnboardingFragment : Fragment() {
     private fun showStep(step: Int) {
         currentStep = step
         stepTwoContainer.visibility = if (step == 2) View.VISIBLE else View.GONE
-        stepOneContainer.visibility = if (step == 1) View.VISIBLE else View.GONE        onboardingSubtitle.visibility = if (step == 1) View.VISIBLE else View.GONE        backButton.visibility = if (step == 1) View.VISIBLE else View.GONE
-        nextButton.visibility = if (step == 2) View.VISIBLE else View.GONE
-        finishButton.visibility = if (step == 1) View.VISIBLE else View.GONE
-        stepIndicator.text = if (step == 2) getString(R.string.onboarding_step_one) else getString(R.string.onboarding_step_two)
-        onboardingTitle.text = if (step == 1) getString(R.string.onboarding_title_pet_profile) else getString(R.string.onboarding_title)
+        stepOneContainer.visibility = if (step == 1) View.VISIBLE else View.GONE
+        onboardingSubtitle.visibility = if (step == 1) View.VISIBLE else View.GONE
+        backButton.visibility = if (step == 2) View.VISIBLE else View.GONE
+        nextButton.visibility = if (step == 1) View.VISIBLE else View.GONE
+        finishButton.visibility = if (step == 2) View.VISIBLE else View.GONE
+        stepIndicator.text = if (step == 1) getString(R.string.onboarding_step_one) else getString(R.string.onboarding_step_two)
+        onboardingTitle.text = if (step == 2) getString(R.string.onboarding_title_pet_profile) else getString(R.string.onboarding_title)
     }
 
     private fun validateStepOne(): Boolean {
+        if (userNameInput.text.isNullOrBlank()) {
+            showToast("Please enter your name")
+            return false
+        }
+        val ageText = userAgeInput.text.toString().trim()
+        val ageValue = ageText.toIntOrNull()
+        if (ageText.isEmpty() || ageValue == null || ageValue <= 0) {
+            showToast("Please enter a valid numeric age")
+            return false
+        }
+        if (userGenderRadioGroup.checkedRadioButtonId == -1) {
+            showToast("Please select your gender")
+            return false
+        }
+        return true
+    }
+
+    private fun validateStepTwo(): Boolean {
         if (petNameInput.text.isNullOrBlank()) {
             showToast("Please enter your pet's name")
             return false
@@ -148,28 +165,6 @@ class OnboardingFragment : Fragment() {
             showToast("Please enter a valid numeric weight")
             return false
         }
-        if (weightUnitSpinner.selectedItem == null) {
-            showToast("Please select a weight unit")
-            return false
-        }
-        return true
-    }
-
-    private fun validateStepTwo(): Boolean {
-        if (userNameInput.text.isNullOrBlank()) {
-            showToast("Please enter your name")
-            return false
-        }
-        val ageText = userAgeInput.text.toString().trim()
-        val ageValue = ageText.toIntOrNull()
-        if (ageText.isEmpty() || ageValue == null || ageValue <= 0) {
-            showToast("Please enter a valid numeric age")
-            return false
-        }
-        if (userGenderRadioGroup.checkedRadioButtonId == -1) {
-            showToast("Please select your gender")
-            return false
-        }
         return true
     }
 
@@ -177,9 +172,7 @@ class OnboardingFragment : Fragment() {
         val name = petNameInput.text.toString().trim()
         val breed = petBreedInput.text.toString().trim()
         val age = petAgeInput.text.toString().trim()
-        val weightValue = petWeightInput.text.toString().trim()
-        val weightUnit = weightUnitSpinner.selectedItem.toString()
-        val weight = "$weightValue $weightUnit"
+        val weight = petWeightInput.text.toString().trim()
         val language = languageSpinner.selectedItem.toString()
         val petType = if (petTypeRadioGroup.checkedRadioButtonId == R.id.petTypeCatRadio) "Cat" else "Dog"
 
@@ -212,13 +205,6 @@ class OnboardingFragment : Fragment() {
 
         showToast("Setup complete! Welcome to PetPlanner.")
         return true
-    }
-
-    private fun setupWeightUnitSpinner() {
-        val units = resources.getStringArray(R.array.weight_unit_options)
-        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, units)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        weightUnitSpinner.adapter = adapter
     }
 
     private fun showToast(message: String) {

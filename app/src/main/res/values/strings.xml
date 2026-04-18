@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">PetPlanner</string>
-    <string name="home_title">PetPlanner</string>
-    <string name="home_subtitle">Daily care, reminders, and pet profiles in one place</string>
+    <string name="home_title">Welcome to PetPlanner</string>
     <string name="onboarding_title">Let’s set up your Account</string>
     <string name="onboarding_title_pet_profile">Let’s set up your pet profile</string>
     <string name="onboarding_subtitle">Please tell us about yourself.</string>
     <string name="onboarding_step_one">Step 1 of 2: User profile</string>
     <string name="onboarding_step_two">Step 2 of 2: Pet profile</string>
-    <string name="onboarding_pet_profile_title">Pet profile</string>
+    <string name="onboarding_pet_profile_title">Schedule</string>
     <string name="pet_name_hint">Pet name</string>
     <string name="pet_breed_hint">Breed</string>
     <string name="pet_type_label">Pet type</string>
@@ -16,7 +15,6 @@
     <string name="pet_type_cat">Cat</string>
     <string name="pet_age_hint">Age</string>
     <string name="pet_weight_hint">Weight</string>
-    <string name="pet_weight_unit_label">Weight unit</string>
     <string-array name="weight_unit_options">
         <item>kg</item>
         <item>lbs</item>
@@ -33,7 +31,6 @@
     <string name="onboarding_language_label">Preferred language</string>
     <string name="onboarding_reminders_label">Reminders enabled</string>
     <string name="onboarding_reminders_description">Receive daily reminders for pet care</string>
-    <string name="settings_language_label">Language</string>
     <string name="back_button">Back</string>
     <string name="next_button">Next</string>
     <string name="finish_button">Finish</string>
@@ -43,22 +40,4 @@
         <item>Français</item>
         <item>Deutsch</item>
     </string-array>
-    <string name="pet_name">Buddy</string>
-    <string name="pet_summary">Golden Retriever · 3 yrs · Dog</string>
-    <string name="pet_personality">Personality: playful, friendly, loves morning walks</string>
-    <string name="today_tasks_title">Today\'s Tasks</string>
-    <string name="task_feed">Feed Buddy breakfast</string>
-    <string name="task_walk">Morning walk and training</string>
-    <string name="task_medication">Medication reminder: joint care</string>
-    <string name="mood_label">Mood</string>
-    <string name="mood_value">Happy</string>
-    <string name="weight_label">Weight</string>
-    <string name="weight_value">72 lbs</string>
-    <string name="add_task_button">Add new task</string>
-    <string name="save_task_button">Save task</string>
-    <string name="dashboard_label">Dashboard</string>
-    <string name="pet_profile_label">Pet profile</string>
-    <string name="health_label">Health logs</string>
-    <string name="calendar_label">Calendar</string>
-    <string name="settings_label">Settings</string>
 </resources>
