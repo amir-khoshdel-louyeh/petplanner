@@ -10,7 +10,7 @@
         android:title="@string/nav_todo" />
     <item
         android:id="@+id/navigation_health"
-        android:icon="@android:drawable/ic_menu_manage"
+        android:icon="@drawable/ic_health_heart"
         android:title="@string/nav_health" />
     <item
         android:id="@+id/navigation_logs"
