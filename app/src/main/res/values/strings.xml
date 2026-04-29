@@ -7,6 +7,8 @@
     <string name="nav_health">Health</string>
     <string name="nav_logs">Logs</string>
     <string name="nav_more">More</string>
+    <string name="todo_upcoming">Upcoming</string>
+    <string name="todo_completed">Completed</string>
     <string name="section_title_template">%1$s section</string>
     <string name="onboarding_title">Let’s set up your Account</string>
     <string name="onboarding_title_pet_profile">Let’s set up your pet profile</string>
