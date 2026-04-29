@@ -2,6 +2,7 @@ package com.petplanner
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -9,13 +10,34 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         LocalDataRepository.initialize(this)
 
-        // Temporarily disable onboarding setup flow and open dashboard directly.
-        // We keep the original logic as comments so it can be restored later.
-        // if (OnboardingPreferences.isOnboardingComplete(this)) {
-        //     showDashboard()
-        // } else {
-        //     showOnboarding()
-        // }
+        val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottomNavigation)
+        bottomNavigation.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.navigation_dashboard -> {
+                    showDashboard()
+                    true
+                }
+                R.id.navigation_todo -> {
+                    showSection(getString(R.string.nav_todo))
+                    true
+                }
+                R.id.navigation_health -> {
+                    showSection(getString(R.string.nav_health))
+                    true
+                }
+                R.id.navigation_logs -> {
+                    showSection(getString(R.string.nav_logs))
+                    true
+                }
+                R.id.navigation_more -> {
+                    showSection(getString(R.string.nav_more))
+                    true
+                }
+                else -> false
+            }
+        }
+
+        bottomNavigation.selectedItemId = R.id.navigation_dashboard
         showDashboard()
     }
 
@@ -26,6 +48,12 @@ class MainActivity : AppCompatActivity() {
     private fun showDashboard() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.navHostFragment, DashboardFragment())
+            .commit()
+    }
+
+    private fun showSection(title: String) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.navHostFragment, SectionFragment.newInstance(title))
             .commit()
     }
 
