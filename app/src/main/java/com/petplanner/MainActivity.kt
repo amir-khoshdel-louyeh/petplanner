@@ -9,11 +9,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         LocalDataRepository.initialize(this)
 
-        if (OnboardingPreferences.isOnboardingComplete(this)) {
-            showDashboard()
-        } else {
-            showOnboarding()
-        }
+        // Temporarily disable onboarding setup flow and open dashboard directly.
+        // We keep the original logic as comments so it can be restored later.
+        // if (OnboardingPreferences.isOnboardingComplete(this)) {
+        //     showDashboard()
+        // } else {
+        //     showOnboarding()
+        // }
+        showDashboard()
     }
 
     fun completeOnboarding() {
