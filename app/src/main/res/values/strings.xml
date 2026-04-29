@@ -2,6 +2,12 @@
 <resources>
     <string name="app_name">PetPlanner</string>
     <string name="home_title">Welcome to PetPlanner</string>
+    <string name="nav_dashboard">Dashboard</string>
+    <string name="nav_todo">To-Do</string>
+    <string name="nav_health">Health</string>
+    <string name="nav_logs">Logs</string>
+    <string name="nav_more">More</string>
+    <string name="section_title_template">%1$s section</string>
     <string name="onboarding_title">Let’s set up your Account</string>
     <string name="onboarding_title_pet_profile">Let’s set up your pet profile</string>
     <string name="onboarding_subtitle">Please tell us about yourself.</string>
