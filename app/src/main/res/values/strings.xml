@@ -4,6 +4,8 @@
     <string name="home_title">Welcome to PetPlanner</string>
     <string name="nav_dashboard">Dashboard</string>
     <string name="nav_todo">To-Do</string>
+    <string name="todo_section_title">To-Do List</string>
+    <string name="add_task_button">Add Task</string>
     <string name="nav_health">Health</string>
     <string name="nav_logs">Logs</string>
     <string name="nav_more">More</string>
