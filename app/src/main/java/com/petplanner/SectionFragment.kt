@@ -13,12 +13,15 @@ class SectionFragment : Fragment(R.layout.fragment_section) {
         val sectionTitle = view.findViewById<TextView>(R.id.sectionTitle)
         val addTaskButton = view.findViewById<MaterialButton>(R.id.addTaskButton)
 
-        if (title == getString(R.string.nav_todo)) {
-            sectionTitle.text = getString(R.string.todo_section_title)
-            addTaskButton.visibility = View.VISIBLE
-            addTaskButton.text = getString(R.string.add_task_button)
+        sectionTitle.text = if (title == getString(R.string.nav_todo)) {
+            getString(R.string.todo_section_title)
         } else {
-            sectionTitle.text = getString(R.string.section_title_template, title)
+            title
+        }
+
+        if (title == getString(R.string.nav_todo)) {
+            addTaskButton.visibility = View.VISIBLE
+        } else {
             addTaskButton.visibility = View.GONE
         }
     }

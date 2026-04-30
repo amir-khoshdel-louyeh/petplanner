@@ -12,17 +12,7 @@
         android:orientation="vertical"
         android:gravity="top|center_horizontal">
 
-        <TextView
-            android:id="@+id/sectionTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="@color/primary"
-            android:textStyle="bold"
-            android:text="Section"
-            android:letterSpacing="0.01"
-            android:paddingTop="16dp"
-            android:paddingBottom="24dp" />
+        <include layout="@layout/section_header" />
 
         <View
             android:layout_width="match_parent"
@@ -34,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:text="Add Task"
+            android:text="@string/add_task_button"
             android:textAllCaps="false"
             app:cornerRadius="16dp"
             app:iconGravity="textStart"
