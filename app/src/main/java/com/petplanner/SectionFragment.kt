@@ -2,6 +2,7 @@ package com.petplanner
 
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
@@ -14,6 +15,7 @@ class SectionFragment : Fragment(R.layout.fragment_section) {
         val title = arguments?.getString(ARG_SECTION_TITLE) ?: getString(R.string.nav_more)
         val sectionTitle = view.findViewById<TextView>(R.id.sectionTitle)
         val sectionIcon = view.findViewById<ImageView>(R.id.sectionIcon)
+        val backButton = view.findViewById<ImageButton>(R.id.backButton)
         val addTaskButton = view.findViewById<MaterialButton>(R.id.addTaskButton)
 
         sectionTitle.text = if (title == getString(R.string.nav_todo)) {
@@ -37,6 +39,10 @@ class SectionFragment : Fragment(R.layout.fragment_section) {
             addTaskButton.visibility = View.VISIBLE
         } else {
             addTaskButton.visibility = View.GONE
+        }
+
+        backButton.setOnClickListener {
+            (activity as? MainActivity)?.navigateToDashboard()
         }
     }
 

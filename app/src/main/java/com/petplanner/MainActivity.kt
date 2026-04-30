@@ -38,17 +38,20 @@ class MainActivity : AppCompatActivity() {
         }
 
         bottomNavigation.selectedItemId = R.id.navigation_dashboard
-        showDashboard()
     }
 
     fun completeOnboarding() {
         showDashboard()
     }
 
-    private fun showDashboard() {
+    fun showDashboard() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.navHostFragment, DashboardFragment())
             .commit()
+    }
+
+    fun navigateToDashboard() {
+        findViewById<BottomNavigationView>(R.id.bottomNavigation).selectedItemId = R.id.navigation_dashboard
     }
 
     private fun showSection(title: String) {
